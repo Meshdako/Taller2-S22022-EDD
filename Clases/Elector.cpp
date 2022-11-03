@@ -17,12 +17,12 @@ Elector::Elector(string names, string f_name, string m_name, RUN su_rut, Fecha s
 void Elector::verElector()
 {
     verPersona();
-    cout << "¿Está habilitado para sufragar? " << endl;
+    cout << "¿Está habilitado para sufragar? ";
     (Sufragar == 1) ? cout << "Sí" << endl : cout << "No" << endl;
     
-    cout << "¿Es vocal de mesa? " << endl;
+    cout << "¿Es vocal de mesa? ";
     (Vocal == 1) ? cout << "Sí" << endl : cout << "No" << endl;
     
-    cout << "Mesa de votación: " << endl;
+    cout << "Mesa de votación: ";
     (Mesa == 1) ? cout << "Sí" << endl : cout << "No" << endl;
 }
