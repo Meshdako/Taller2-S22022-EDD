@@ -17,8 +17,12 @@
 
 using namespace std;
 
+void mostrarCola(Cola<Elector> &C);
+
+void arregloACola(Cola<Elector> &C, Elector p[], int indice);
+
 //Función que lee el archivo "servel" y guarda la información en un arreglo.
-void archivoAVector(string nombreArchivo, Direccion p[] , int &indice);
+void archivoAVector(string nombreArchivo, Elector p[] , int &indice);
 
 //Función que guarda la información de una línea en un vector, mediante un caracter delimitador.
 vector<string> split(string lineaASeparar, char delimitador);
