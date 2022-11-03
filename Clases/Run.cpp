@@ -14,5 +14,5 @@ RUN::RUN(long su_rut, char digito)
 
 void RUN::verRun()
 {
-    cout << "RUN: " << suRun  << "-" << dv << endl;
+    cout << "\e[1mRUN:\e[0m" << suRun  << "-" << dv << endl;
 }

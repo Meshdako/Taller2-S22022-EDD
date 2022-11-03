@@ -16,5 +16,5 @@ Fecha::Fecha(int un_dia, int un_mes, int un_anho)
 
 void Fecha::verFecha()
 {
-    cout << dia << "/" << mes << "/" << anho << endl;
+    cout << "\e[1mFecha de nacimiento:\e[0m  " << dia << "/" << mes << "/" << anho << endl;
 }

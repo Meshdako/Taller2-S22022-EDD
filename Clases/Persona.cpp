@@ -19,11 +19,12 @@ Persona::Persona(string names, string f_name, string m_name, RUN su_rut, Fecha s
 
 void Persona::verPersona()
 {
-    cout << "*********" << endl;
-    cout << "Nombres: " << nombres << endl;
-    cout << "Apellido paterno: " << paterno << endl;
-    cout << "Apellido materno: " << materno << endl;
+    //\e[1m Bold \e[0m
+    cout << "*****************************" << endl;
     miRUN.verRun();
+    cout << "\e[1mNombres:\e[0m " << nombres << endl;
+    cout << "\e[1mApellido paterno:\e[0m " << paterno << endl;
+    cout << "\e[1mApellido materno:\e[0m " << materno << endl;
     miFecha.verFecha();
     miDireccion.verDireccion();
 }
