@@ -1,5 +1,50 @@
 #include "Funciones.h"
 
+//Funciones
+
+
+//Menú de selección.
+void Menu()
+{
+    int opcion;
+
+    do{
+        system("clear");
+
+        cout << "\e1[mSeleccione una opción:\e[0m" << endl;
+        cout << "1.- Búsqueda por RUT." << endl;
+        cout << "2.- Búsqueda por Comuna." << endl;
+        cout << "3.- Búsqueda por Año." << endl;
+        cout << "4.- Búsqueda de inhabilitados para sufragar por Letra (Apellido Paterno)." << endl;
+        cout << "5.- Totalizador" << endl;
+        cout << "0.- Salir" << endl;
+        cout << ">>  " << endl;
+        cin >> opcion;
+        cin.ignore(5, '\n');
+
+        switch(opcion){
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            default:
+                cout << "Seleccione una opción válida." << endl;
+                break;
+        }
+    }while(opcion != 0);
+}
+
+void mostrarPila(Stack<Elector> &S)
+{
+    //Terminar.
+}
+
 void mostrarCola(Cola<Elector> &C)
 {
     Cola<Elector> Cola_Aux;
@@ -16,6 +61,7 @@ void mostrarCola(Cola<Elector> &C)
 
         C.agregar(Aux);    
     }
+    
     cout << "Toda la cola mostrada." << endl;
 }
 
@@ -37,6 +83,7 @@ void archivoAVector(string nombreArchivo, Elector p[] , int &indice){
         while( getline(archivo, lineaObtenida, '\n')){
             //ahora recorremos la línea
             vector<string> data = split(lineaObtenida, ';');
+
             if(indice > 0) {
                 RUN Run_Aux(stol(data[0]), data[1].front());
 
