@@ -3,21 +3,32 @@
 
 #include <iostream>
 
+#include "Run.h"
+#include "Fecha.h"
+#include "Direccion.h"
+#include "Persona.h"
+
 using namespace std;
 
-class Elector
+class Elector : public Persona
 {
     private:
-        string Nombre;
+        int Sufragar;
+        int Vocal;
+        int Mesa;
     public:
         //Constructor
         Elector();
+        Elector(string, string, string, RUN, Fecha, Direccion, int, int, int);
 
         //Sets
-        void setNombre(string x){Nombre = x;}
-
+        void setSufragio(int x){Sufragar = x;}
+        void setVocal(int x){Vocal = x;}
+        void setMesa(int x){Mesa = x;}
         //Gets
-        string getNombre(){return Nombre;}
+        int getSufragio(){return Sufragar;}
+        int getVocal(){return Vocal;}
+        int getMesa(){return Mesa;}        
 
         void verElector();
 };

@@ -1,10 +1,14 @@
 #ifndef RUN_H
 #define RUN_H
 
+#include <iostream>
+
+using namespace std;
+
 class RUN
 {
     private:
-        long runSdv;
+        long suRun;
         char dv;
     public:
         //Constructor
@@ -12,11 +16,11 @@ class RUN
         RUN(long, char);
 
         //Sets
-        void setRun(long x){runSdv = x;}
+        void setRun(long x){suRun = x;}
         void setDv(char x){dv = x;}
 
         //Gets
-        long getRun(){return runSdv;}
+        long getRun(){return suRun;}
         char getDv(){return dv;}
 
         void verRun();
