@@ -36,7 +36,7 @@ int main()
     arregloACola(Cola_Electores, Electores, indice);
     mostrarCola(Cola_Electores);
 
-    Menu();
+    Menu(Cola_Electores);
 
     return 0;
 }
