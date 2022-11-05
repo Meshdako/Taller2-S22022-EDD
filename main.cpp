@@ -26,7 +26,7 @@ using namespace std;
 int main()
 {
     int indice = 0; //indice del vector  o cantidad actual de elementos en el vector
-    string nombreArchivo ="servel_pruebas.txt";
+    string nombreArchivo ="servel.txt";
     
     Elector Electores[MAX_VECTOR];
 
@@ -34,7 +34,7 @@ int main()
 
     archivoAVector(nombreArchivo, Electores, indice);
     arregloACola(Cola_Electores, Electores, indice);
-    mostrarCola(Cola_Electores);
+    //mostrarCola(Cola_Electores);
 
     Menu(Cola_Electores);
 
