@@ -1,3 +1,10 @@
+/**
+ * @author Martín Sobarzo Huerta (MESH)
+ * 5/11/2022
+ * Estructura de Datos
+ * Mauro Castillo
+*/
+
 #include <iostream>
 
 #include "Funciones.h"
