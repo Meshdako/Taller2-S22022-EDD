@@ -3,8 +3,6 @@
 #include "Funciones.h"
 #include "Funciones.cpp"
 
-using namespace std;
-
 //Clases
 #include "Clases/Direccion.h"
 #include "Clases/Direccion.cpp"
@@ -21,19 +19,9 @@ using namespace std;
 #include "TAD/Cola.h"
 #include "TAD/Stack.h"
 
-#define MAX_VECTOR 1000
+using namespace std;
 
-/**
- * INFORMACIÓN DEL ELECTOR
- * RUN
- * Nombre
- * Fecha Nacimiento
- * Dirección
- * Comuna
- * Habilitado para sufragar
- * Es vocal de mesa
- * Mesa de Votación
- */
+#define MAX_VECTOR 1000
 
 int main()
 {
@@ -47,6 +35,8 @@ int main()
     archivoAVector(nombreArchivo, Electores, indice);
     arregloACola(Cola_Electores, Electores, indice);
     mostrarCola(Cola_Electores);
+
+    Menu();
 
     return 0;
 }
