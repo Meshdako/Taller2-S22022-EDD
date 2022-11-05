@@ -19,7 +19,7 @@ Se debe verificar que gcc instalado y en caso que no lo esté, instalarlo con el
 $ sudo apt install gcc / sudo pacman -S gcc
 $ gcc --version
 $ g++ (GCC) 12.2.0 (o superior)
-$ Copyright (C) 2022 Free Software Foundation, Inc. Esto es software libre; vea el código para las condiciones de copia. NO hay garantía; ni siquiera para MERCANTIBILIDAD o IDONEIDAD PARA UN PROPÓSITO EN PARTICULAR^C
+$ Copyright (C) 2022 Free Software Foundation, Inc. Esto es software libre; vea el código para las condiciones de copia. NO hay garantía; ni siquiera para MERCANTIBILIDAD o IDONEIDAD PARA UN PROPÓSITO EN PARTICULAR
 ```
 _**Debian Based:** sudo apt install / **Arch Linux Based:** sudo pacman_
 Luego de instalar gcc, seguir las siguientes instrucciones en la carpeta del repositorio clonado:
@@ -28,6 +28,6 @@ Luego de instalar gcc, seguir las siguientes instrucciones en la carpeta del rep
 $ g++ main.cpp -o main
 $ ./main
 ```
-Posterior a ejecutar el comando *./main* debería aparecer el menú del programa.
+Posterior a ejecutar el comando _./main_ debería aparecer el menú del programa.
 
 # Muchas gracias.
