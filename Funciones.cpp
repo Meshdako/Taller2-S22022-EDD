@@ -37,11 +37,10 @@ Stack<Elector> ElectoresXComuna(Cola<Elector> &C, string in_Comuna)
 
     cout << "Buscando electores por comuna ingresada..." << endl; 
     
-    
     Cola<Elector> C_Aux;
     Stack<Elector> S_Aux;
 
-    for(int i = 0; !C.vacio(); i++){
+    while(!C.vacio()){
         Elector El_Aux = C.extraer();
         C_Aux.agregar(El_Aux);
 
@@ -57,12 +56,103 @@ Stack<Elector> ElectoresXComuna(Cola<Elector> &C, string in_Comuna)
     return S_Aux;
 }
 
+void RunXAnhio(Cola<Elector> &C, int in_Anhio)
+{
+    system("clear");  
+
+    cout << "Buscando por año ingresado..." << endl; 
+    
+    int cont = 0;
+    Cola<Elector> C_Aux;
+
+    //Vacíamos la Cola Original en la Cola Auxiliar
+    while(!C.vacio()){
+        Elector El_Aux = C.extraer();
+        C_Aux.agregar(El_Aux);
+        
+        if(in_Anhio == El_Aux.getFecha().getAnho())
+            cont++;
+    }
+
+    cout << "El total de electores nacidos el año " << in_Anhio << " es: " << cont << endl;
+
+    //Regresamos los datos a la Cola Original.
+    while(!C_Aux.vacio()){
+        C.agregar(C_Aux.extraer());
+    }
+    PressEnterToContinue();
+}
+
+Stack<Elector> InhabilitadosXLetra(Cola<Elector> &C, char in_Letra)
+{
+    system("clear");  
+
+    cout << "Buscando electores con apellidos que empiecen por: " << in_Letra << endl; 
+    
+    Cola<Elector> C_Aux;
+    Stack<Elector> S_Aux;
+
+    while(!C.vacio()){
+        Elector El_Aux = C.extraer();
+        C_Aux.agregar(El_Aux);
+
+        if(in_Letra == El_Aux.getPaterno().front())
+            S_Aux.push(El_Aux);
+    }
+
+    //Regresamos los datos a la Cola Original.
+    while(!C_Aux.vacio()){
+        C.agregar(C_Aux.extraer());
+    }
+
+    return S_Aux;
+}
+
+void Totalizador(Cola<Elector> &C)
+{
+    system("clear");  
+
+    int cont_1, cont_2, cont_3, cont_4;
+    Cola<Elector> C_Aux;
+
+    cont_1 = cont_2 = cont_3 = cont_4 = 0;
+
+    while(!C.vacio()){
+        Elector El_Aux = C.extraer();
+        C_Aux.agregar(El_Aux);
+        
+        if(El_Aux.getFecha().getAnho() > 2002)
+            cont_2++;
+        
+        if((El_Aux.getSufragio() == 1) && (El_Aux.getFecha().getAnho() < 1987))
+            cont_3++;
+        
+        if(El_Aux.getDireccion().getComuna() == "MACUL")
+            cont_4++;
+
+        cont_1++;
+    }
+
+    //Regresamos los datos a la Cola Original.
+    while(!C_Aux.vacio()){
+        C.agregar(C_Aux.extraer());
+    }
+
+    cout << "Total de electores: " << cont_1 << endl;
+    cout << "Total de electores cuyo año de nacimiento es mayor a 2002: " << cont_2 << endl;
+    cout << "Total de electores habilitados para votar mayores de 35 años: " << cont_3 << endl;
+    cout << "total de vocales de mesa de la comuna de Macul: " << cont_4 << endl;
+
+    PressEnterToContinue();
+}
+
 //Menú de selección.
 void Menu(Cola<Elector> &C)
 {
     int opcion;
 
-    int in_Run;
+    char in_Letra;
+    int in_Run, in_Anhio;
     string in_Comuna;
     
     Stack<Elector> Pila;
@@ -75,7 +165,7 @@ void Menu(Cola<Elector> &C)
         cout << "4.- Búsqueda de inhabilitados para sufragar por Letra (Apellido Paterno)." << endl;
         cout << "5.- Totalizador" << endl;
         cout << "0.- Salir" << endl;
-        cout << ">>  ";
+        cout << ">> ";
         cin >> opcion;
         cin.ignore(numeric_limits <std::streamsize> ::max(), '\n');
 
@@ -88,17 +178,29 @@ void Menu(Cola<Elector> &C)
                 ConsultaXRun(C, in_Run);
                 break;
             case 2:
-                cout << "Ingrese la Comuna que desea buscar: ";
+                cout << "Ingrese la Comuna que desea buscar (ej: LA CISTERNA): ";
                 getline(cin >> ws, in_Comuna);
 
                 Pila = ElectoresXComuna(C, in_Comuna);
                 mostrarPila(Pila);
                 break;
             case 3:
+                cout << "Ingrese el año que desea buscar: ";
+                cin >> in_Anhio;
+                cin.ignore(numeric_limits <std::streamsize> ::max(), '\n');
+
+                RunXAnhio(C, in_Anhio);
                 break;
             case 4:
+                cout << "Ingrese una letra (ej: R): ";
+                cin >> in_Letra;
+                cin.ignore(numeric_limits <std::streamsize> ::max(), '\n');
+
+                Pila = InhabilitadosXLetra(C, in_Letra);
+                mostrarPila(Pila);
                 break;
             case 5:
+                Totalizador(C);
                 break;
             default:
                 cout << "Seleccione una opción válida." << endl;
@@ -152,8 +254,11 @@ void archivoAVector(string nombreArchivo, Elector p[] , int &indice){
     string palabra;
 
     archivo.open(nombreArchivo, ios::in);
-    
+
     if(archivo.is_open() == true) {
+        //Eliminamos la primera línea.
+        getline(archivo, lineaObtenida, '\n');
+
         while( getline(archivo, lineaObtenida, '\n')){
             //ahora recorremos la línea
             vector<string> data = split(lineaObtenida, ';');
