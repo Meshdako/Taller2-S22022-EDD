@@ -17,6 +17,8 @@
 
 using namespace std;
 
+void PressEnterToContinue();
+
 //Implementa correctamente una función que recibe una Cola y un run, y muestra en pantalla todos los datos del elector.
 void ConsultaXRun(Cola<Elector> &C, int in_Run);
 
@@ -39,7 +41,7 @@ Stack<Elector> InhabilitadosXLetra(Cola<Elector> &C, char in_Letra);
 void Totalizador(Cola<Elector> &C);
 
 //Menú que despliega todas las funciones de forma ordenada.
-void Menu();
+void Menu(Cola<Elector> &C);
 
 //Función que muestra una pila.
 void mostrarPila(Stack<Elector> &S);
