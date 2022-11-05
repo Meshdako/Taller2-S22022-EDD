@@ -1,31 +1,98 @@
 #include "Funciones.h"
 
 //Funciones
+void PressEnterToContinue()
+{
+    cout << "Presiona Enter para continuar... " << flush;
+    cin.ignore(numeric_limits <std::streamsize> ::max(), '\n' ); 
+}
 
+void ConsultaXRun(Cola<Elector> &C, int in_Run)
+{
+    system("clear");  
+
+    cout << "Buscando RUT solicitado..." << endl; 
+
+    Cola<Elector> C_Aux;
+
+    //Vacíamos la Cola Original en la Cola Auxiliar
+    while(!C.vacio()){
+        Elector El_Aux = C.extraer();
+        C_Aux.agregar(El_Aux);
+        
+        if(in_Run == El_Aux.getRUN().getRun())
+            El_Aux.verElector();
+    }
+
+    //Regresamos los datos a la Cola Original.
+    while(!C_Aux.vacio()){
+        C.agregar(C_Aux.extraer());
+    }
+    PressEnterToContinue();
+}
+
+Stack<Elector> ElectoresXComuna(Cola<Elector> &C, string in_Comuna)
+{
+    system("clear");  
+
+    cout << "Buscando electores por comuna ingresada..." << endl; 
+    
+    
+    Cola<Elector> C_Aux;
+    Stack<Elector> S_Aux;
+
+    for(int i = 0; !C.vacio(); i++){
+        Elector El_Aux = C.extraer();
+        C_Aux.agregar(El_Aux);
+
+        if(in_Comuna == El_Aux.getDireccion().getComuna())
+            S_Aux.push(El_Aux);
+    }
+
+    //Regresamos los datos a la Cola Original.
+    while(!C_Aux.vacio()){
+        C.agregar(C_Aux.extraer());
+    }
+
+    return S_Aux;
+}
 
 //Menú de selección.
-void Menu()
+void Menu(Cola<Elector> &C)
 {
     int opcion;
 
+    int in_Run;
+    string in_Comuna;
+    
+    Stack<Elector> Pila;
     do{
         system("clear");
-
-        cout << "\e1[mSeleccione una opción:\e[0m" << endl;
+        cout << "\e[1mSeleccione una opción:\e[0m" << endl;
         cout << "1.- Búsqueda por RUT." << endl;
         cout << "2.- Búsqueda por Comuna." << endl;
         cout << "3.- Búsqueda por Año." << endl;
         cout << "4.- Búsqueda de inhabilitados para sufragar por Letra (Apellido Paterno)." << endl;
         cout << "5.- Totalizador" << endl;
         cout << "0.- Salir" << endl;
-        cout << ">>  " << endl;
+        cout << ">>  ";
         cin >> opcion;
-        cin.ignore(5, '\n');
+        cin.ignore(numeric_limits <std::streamsize> ::max(), '\n');
 
         switch(opcion){
             case 1:
+                cout << "Ingrese el RUT que desea buscar: ";
+                cin >> in_Run;
+                cin.ignore(numeric_limits <std::streamsize> ::max(), '\n');
+
+                ConsultaXRun(C, in_Run);
                 break;
             case 2:
+                cout << "Ingrese la Comuna que desea buscar: ";
+                getline(cin >> ws, in_Comuna);
+
+                Pila = ElectoresXComuna(C, in_Comuna);
+                mostrarPila(Pila);
                 break;
             case 3:
                 break;
@@ -42,7 +109,14 @@ void Menu()
 
 void mostrarPila(Stack<Elector> &S)
 {
-    //Terminar.
+    while(!S.empty()){
+        Elector Aux = S.pop();
+        Aux.verElector();
+    }
+
+    if(S.empty())
+        cout << "Pila vaciada" << endl;
+    PressEnterToContinue();
 }
 
 void mostrarCola(Cola<Elector> &C)
